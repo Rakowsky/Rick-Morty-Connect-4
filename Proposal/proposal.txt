@@ -14,10 +14,10 @@ Challenges + Obsta cles:
 
 
 Technology used: 
-- HTML
--CSS
--Javascript
--jQuery 
--Perhaps SVG animation? 
+-HTML (for index page and game page)
+-CSS (for index page and game page)[Flexbox]
+-Javascript & jQuery 
+-Perhaps SVG animation? Not 100% yet
+
 
 https://git.generalassemb.ly/amandajmunch/turtle-project-1 
