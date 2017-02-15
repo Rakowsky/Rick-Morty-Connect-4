@@ -35,13 +35,21 @@
   background-color: skyblue;
 }
 
-.slowRow {
+.slotRow {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border: 2px solid red;
+  width: 12%;
+  height: 100%;
 }
 
 .slot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   border-radius: 50%;
-  background-color: white;
+  background-color: pink;
   padding: 2%;
   width: 10%;
   height: 10%;

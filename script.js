@@ -1,50 +1,33 @@
 $(document).ready(function(){
 
-//making each slot for the game board
-// var $slotmaker = function(){
-//   var $slot = $('<div>');
-//   var $gameboard = $('.gameboard')
-//   $slot.addClass('slot');
-//   $gameboard.append($slot);
-// }
-// //make 42 total slots, 6 x 7
-// for(var i = 0; i< 42; i++){
-//   $slotmaker();
-// }
+// /create board for 6x7
 
-var $slotRowMaker = function(){
-  var $slotRow = $('<div>');
-  var $gameboard = $('.gameboard')
-  $slotRow.addClass('row');
-  $('gameboard').append($slotRow);
-}
-//make 42 total slots, 6 x 7
-for(var i = 0; i< 6; i++){
-  $slotRowMaker();
-}
-// make 7 slots per column
- var $slotmaker = function(){
-  var $slot = $('<div>');
-  var $gameboard = $('.gameboard')
-  $slot.addClass('slot');
-  $('slotRow').append($slot);
-}
-//make 42 total slots, 6 x 7
-for(var i = 0; i< 7; i++){
-  $slotmaker();
-}
+var row = [6];
+var column = [7];
+var boardCircles = [];
 
-
+   for (var i = 0; i < row; i++) {
+        // var $slotRow = $('<div>');
+        // $slotRow.addClass('slotRow');
+        // $('.gameboard').append($slotRow)
+      for (var j = 0; j < column; j++) {
+           var $slot = $('<div>');
+           $slot.addClass('slot');
+           $('.gameboard').append($slot);
+      }
+   }
 
 // //setting players
 // var player1 = "player1";
 // var player2 = "player2";
 
-// var turn = "";
+// var turn = ""; turn count 1
 
-// var checkForWinner = function(){
+var checkForWinner = function(){
 
-// }
+
+}
+
 
 //player 1 red turn
 var $player1 = $(function() {
@@ -56,8 +39,8 @@ var $player1 = $(function() {
     });
 })
     $('.slot').click(function(event) {
-          $(this).off().addClass('red')
-          $(this).toggle($player2);
+          $(this).off().addClass('red');
+          checkForWinner();
 
 });
 
@@ -72,18 +55,8 @@ var $player2 = $(function() {
 })
     $('.slot').click(function(event) {
           $(this).off().addClass('yellow');
+         checkForWinner();
 });
-
-
-
-
-
-
-
-
-
-
-
 
 
 
