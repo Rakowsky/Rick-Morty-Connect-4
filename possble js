@@ -1,169 +1,72 @@
 possble js
 
-$(document).ready(function(){
+var checkForWinner = function(row, column){
+// pseudocode
+// for(i = 0; i< row; i++)
+// for(j = 0; j< column; j++)
 
-// /create board for 6x7
+  // checks columns
+if(
 
-var row = [6];
-var column = [7];
-var boardCircles = [];
+  ($('.slot.column.0.row.yellow').length > 3) ||
+  ($('.slot.column.1.row.yellow').length > 3) ||
+  ($('.slot.column.2.row.yellow').length > 3) ||
+  ($('.slot.column.3.row.yellow').length > 3) ||
+  ($('.slot.column.4.row.yellow').length > 3) ||
+  ($('.slot.column.5.row.yellow').length > 3) ||
+  ($('.slot.column.6.row.yellow').length > 3) ||
 
-   for (var i = 0; i < row; i++) {
-        var $slotRow = $('<div>');
-        $slotRow.addClass('slotRow');
-        $('.gameboard').append($slotRow)
-      // for (var j = 0; j < column; j++) {
-      //      var $slot = $('<div>');
-      //      $slot.addClass('slot');
-      //      $('.gameboard').append($slot);
-      // }
-   }
-    for (var j = 0; j < column; j++) {
-           var $slot = $('<div>');
-           $slot.addClass('slot');
-           $('.slotRow').append($slot);
-      }
-// //setting players
-// var player1 = "player1";
-// var player2 = "player2";
+  // // checks rows
+  ($('.slot.column.row.yellow').length > 3) ||
+  ($('.slot.column.row.1.yellow').length > 3) ||
+  ($('.slot.column.row.2.yellow').length > 3) ||
+  ($('.slot.column.row.3.yellow').length > 3) ||
+  ($('.slot.column.row.4.yellow').length > 3) ||
+  ($('.slot.column.row.5.yellow').length > 3)
 
-// var turn = ""; turn count 1
+  // checks diagonally
+  // ($('.slot.column.0.row.yellow').length > 3) ||
+  // ($('.slot.column.1.row.yellow').length > 3) ||
+  // ($('.slot.column.2.row.yellow').length > 3) ||
+  // ($('.slot.column.3.row.yellow').length > 3) ||
+  // ($('.slot.column.4.row.yellow').length > 3) ||
+  // ($('.slot.column.5.row.yellow').length > 3) ||
+  // ($('.slot.column.6.row.yellow').length > 3)
 
-var checkForWinner = function(){
-if($('.yellow').length >3){
- console.log("you won");
-  }
+) {
+  alert('you win!');
+} else if (
+  ($('.slot.column.0.row.red').length > 3) ||
+  ($('.slot.column.1.row.red').length > 3) ||
+  ($('.slot.column.2.row.red').length > 3) ||
+  ($('.slot.column.3.row.red').length > 3) ||
+  ($('.slot.column.4.row.red').length > 3) ||
+  ($('.slot.column.5.row.red').length > 3) ||
+  ($('.slot.column.6.row.red').length > 3) ||
+
+  // // checks rows
+  ($('.slot.column.row.red').length > 3) ||
+  ($('.slot.column.row.1.red').length > 3) ||
+  ($('.slot.column.row.2.red').length > 3) ||
+  ($('.slot.column.row.3.red').length > 3) ||
+  ($('.slot.column.row.4.red').length > 3) ||
+  ($('.slot.column.row.5.red').length > 3)
+
+  // checks diagonally
+  // ($('.slot.column.0.row.red').length > 3) ||
+  // ($('.slot.column.1.row.red').length > 3) ||
+  // ($('.slot.column.2.row.red').length > 3) ||
+  // ($('.slot.column.3.row.red').length > 3) ||
+  // ($('.slot.column.4.row.red').length > 3) ||
+  // ($('.slot.column.5.row.red').length > 3) ||
+  // ($('.slot.column.6.row.red').length > 3)
+  ) {
+  alert('2 wins');
+} else {
+  // nextTurn();
+  // $player1.toggle($player2);
 }
 
+};
 
-//player 1 red turn
-var $player1 = $(function() {
-    $('.slot').hover(
-    function() {
-        $(this).addClass('red')
-    }, function() {
-        $(this).removeClass('red')
-    });
-})
-    $('.slot').click(function(event) {
-          $(this).off().addClass('red');
-          checkForWinner();
-
-});
-
-//player 2 yellow turn
-var $player2 = $(function() {
-    $('.slot').hover(
-    function() {
-        $(this).addClass('yellow')
-    }, function() {
-        $(this).removeClass('yellow')
-    });
-})
-    $('.slot').click(function(event) {
-          $(this).off().addClass('yellow');
-         checkForWinner();
-});
-
-
-
-});
-
-
-
-
-
-
-
-.container {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  border: 2px solid red;
-  flex-wrap: wrap;
-}
-
-.body{
-  height: 70vh;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  border: 2px solid blue;
-  padding-top: 5%;
-  flex-wrap: wrap;
-}
-.player1 {
-  width:  10%;
-  height: 40%;
-  border: 2px solid black;
-}
-
-.gameboard {
-  width: 40%;
-  height: 90%;
-  padding: 1%;
-  border: 2px solid black;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  background-color: skyblue;
-}
-
-.slotRow {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  /*padding: 1%;*/
-  /*border: 2px solid red;*/
-  width: 15%;
-  height: 100%;
-}
-
-.slot {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 50%;
-  background-color: white;
-  /*padding: 2%;*/
-  width: 90%;
-  height: 90%;
-
-}
-
-.red {
-  background-color: red;
-
-}
-
-.yellow{
-  background-color: yellow;
-}
-.player2{
-  width: 10%;
-  height: 40%;
-  border: 2px solid black;
-}
-
-.footer{
-  height: 20%;
-  width: 100%;
-  display: flex;
-  border: 2px solid yellow;
-  justify-content: center;
-}
-
-.newgame{
-  width: 10%;
-  height: 30%;
-  border: 2px solid pink;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
+// checkForWinner();
