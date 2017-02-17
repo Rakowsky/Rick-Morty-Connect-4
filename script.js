@@ -13,8 +13,12 @@ function createBoard(){
             var $slot = $('<div>');
             // adding individual class names to each slot
             $slot.addClass('slot');
-            $slot.addClass('column ' + j);
-            $slot.addClass('row ' + i);
+            $slot.addClass('column' + j);
+            $slot.addClass(j);
+            $slot.addClass('row' + i);
+            $slot.addClass(i);
+            // console.log(`row ${i}`)
+            // console.log(`column ${j}`)
             $('.gameboard').append($slot);
             // boardLog.push($slot);
             board[i][j] = 0;
@@ -39,21 +43,49 @@ console.log(board.length);
 // when a div slot is clicked, adds 1 or 2 to board array
 
 var checkForWinner = function(row,column){
-  // check horizontal
-  var $row = $('.row');
-  var $column = $('.column');
+  // check columns
 
-for($row = 0; $row < $row.length; $row++){
-  for($column = 0; $column < $column.length; $column++){
-    if($('.yellow')>3){
-      alert('youwin');
-      console.log('hi');
-    } else {
-      console.log('bye');
+  for(var j = 0; j<$('.column').length; j++) {
+    if($('.yellow').length>3){
+      console.log('yellow wins!');
     }
+        else if($('.red').length>3){
+          console.log('red wins!');
+        } else{
+          console.log('hi');
+        }
+
+
+    //test
+  } for(var i = 0; i<$('.row').length; i++) {
+    if($('.yellow').length>3){
+      console.log('yellow wins!');
+    }
+        else if($('.red').length>3){
+          console.log('red wins!');
+        } else{
+          console.log('hi');
+        }
+
+
+
   }
-}
+  console.log($('.column[i]'));
 };
+//   var $row = $('.row');
+//   var $column = $('.column');
+
+// for($row = 0; $row < $row.length; $row++){
+//   for($column = 0; $column < $column.length; $column++){
+//     if($('.yellow')>3){
+//       alert('youwin');
+//       console.log('hi');
+//     } else {
+//       console.log('bye');
+//     }
+//   }
+// }
+// };
 
 checkForWinner();
 
@@ -112,7 +144,7 @@ var $player2 = $(function() {
       // board.splice(i,1,2);
       // board[parseInt(event.target.classList[2])][parseInt(event.target.classList[4])] = 2;
       // console.table(board);
-      // checkForWinner();
+      checkForWinner();
 });
 
 
