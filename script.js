@@ -38,16 +38,24 @@ console.log(board.length);
 // pseudocode
 // when a div slot is clicked, adds 1 or 2 to board array
 
-// var checkForWinner = function(row, column){
-//   // check down
-// for(r = 0; r <6; r++){
-//   for(c = 0; c < 7; c++){
-//     // if row.0+3 =
-//   }
-// }
-// };
+var checkForWinner = function(row,column){
+  // check horizontal
+  var $row = $('.row');
+  var $column = $('.column');
 
-// checkForWinner(board);
+for($row = 0; $row < $row.length; $row++){
+  for($column = 0; $column < $column.length; $column++){
+    if($('.yellow')>3){
+      alert('youwin');
+      console.log('hi');
+    } else {
+      console.log('bye');
+    }
+  }
+}
+};
+
+checkForWinner();
 
 //player 1 red turn
 // var $player1 = $(function() {
@@ -60,6 +68,8 @@ console.log(board.length);
 // });
 //     $('.slot').click(function(event) {
 //           $(this).off().addClass('red');
+//           // board[parseInt(event.target.classList[2])][parseInt(event.target.classList[4])] = 2;
+//           // console.table(board);
 //           // checkForWinner();
 
 // });
@@ -98,10 +108,11 @@ var $player2 = $(function() {
       // }
       // debugger
       $(this).off().addClass('yellow');
-      // checkForWinner();
+
       // board.splice(i,1,2);
-      // board[parseInt(event.target.classList[3])][parseInt(event.target.classList[4])] = 2;
+      // board[parseInt(event.target.classList[2])][parseInt(event.target.classList[4])] = 2;
       // console.table(board);
+      // checkForWinner();
 });
 
 
