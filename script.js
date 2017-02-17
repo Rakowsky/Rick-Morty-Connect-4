@@ -30,23 +30,11 @@ createBoard();
 console.table(board);
 console.log(board);
 
-// console.table(boardLog);
-// console.log(board.length);
-
-// //setting players
-// var player1 = "player1";
-// var player2 = "player2";
-
-// var turn = ""; turn count 1
-
-// pseudocode
-// when a div slot is clicked, adds 1 or 2 to board array
-
-
 var turn = true;
 var changeTurn = function(){
   turn = !(turn);
 };
+
 var checkForWinner = function(){
   // check for both winners
       // loop through vertically
@@ -143,13 +131,22 @@ var checkForWinner = function(){
            alert('yellow win dia down');
         }
         else {
-          console.log('hi');
+          // return changeTurn();
+          return board;
         }
     }
   }
 };
 
 // checkForWinner();
+
+function handleClick(){
+  if(turn){
+    $(this).addClass('red')
+  } else{
+    $(this).addClass('yellow');
+  }
+}
 
 // // //player 1 red turn
 var $player1 = $(function() {
@@ -160,19 +157,33 @@ var $player1 = $(function() {
         $(this).removeClass('red');
     });
 });
-    $('.slot').click(function(event) {
-          $(this).off().addClass('red');
+//     $('.slot').click(function(event) {
+//           $(this).off().addClass('red');
+//           // board[parseInt(event.target.classList[2])][parseInt(event.target.classList[4])] = 2;
+//           // console.table(board);
+//              var x = event.target.classList[1][event.target.classList[1].length-1];
+//             var y = event.target.classList[2][event.target.classList[2].length-1];
+//             board[parseInt(y)][parseInt(x)] = 1;
+//           checkForWinner();
+//            // $(this).toggle($player1, $player2);
+//           changeTurn();
+
+// });
+
+$('.slot').click(handleClick){
+          // $(this).off().addClass('red');
           // board[parseInt(event.target.classList[2])][parseInt(event.target.classList[4])] = 2;
           // console.table(board);
              var x = event.target.classList[1][event.target.classList[1].length-1];
             var y = event.target.classList[2][event.target.classList[2].length-1];
             board[parseInt(y)][parseInt(x)] = 1;
           checkForWinner();
+           // $(this).toggle($player1, $player2);
           changeTurn();
 
-});
+};
 
-// player 2 yellow turn
+// // player 2 yellow turn
 var $player2 = $(function() {
     $('.slot').hover(
     function() {
@@ -181,7 +192,7 @@ var $player2 = $(function() {
         $(this).removeClass('yellow');
     });
 });
-    $('.slot').click(function(event) {
+    $('.slot').click(function(handleClick) {
       // Taka wrote some stuff here but it was a mess and didn't work
       console.log(this, event);
       console.log(event.target.classList);
@@ -205,7 +216,7 @@ var $player2 = $(function() {
       //   i = 0;
       // }
       // debugger
-      $(this).off().addClass('yellow');
+      // $(this).off().addClass('yellow');
       // board.splice(i,1,2);
       console.log(event.target.classList[1][event.target.classList[1].length-1], event.target.classList[2][event.target.classList[2].length-1]);
       var x = event.target.classList[1][event.target.classList[1].length-1];
@@ -213,6 +224,7 @@ var $player2 = $(function() {
       board[parseInt(y)][parseInt(x)] = 2;
       console.table(board);
       checkForWinner();
+      // $(this).toggle($player1, $player2);
       changeTurn();
 
 });

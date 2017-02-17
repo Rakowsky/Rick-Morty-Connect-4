@@ -102,3 +102,27 @@ for (r = 0; r < 3; r++)
                 return board[r][c];
 
     alert('winner');
+
+
+
+
+
+
+
+
+
+
+
+
+    $('.slot').click(function(event) {
+          $(this).off().addClass('red');
+          // board[parseInt(event.target.classList[2])][parseInt(event.target.classList[4])] = 2;
+          // console.table(board);
+             var x = event.target.classList[1][event.target.classList[1].length-1];
+            var y = event.target.classList[2][event.target.classList[2].length-1];
+            board[parseInt(y)][parseInt(x)] = 1;
+          checkForWinner();
+           // $(this).toggle($player1, $player2);
+          changeTurn();
+
+});
