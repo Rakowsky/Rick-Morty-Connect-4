@@ -149,8 +149,8 @@ var turn = true;
 //   // what player is in turn
 //   // what color do I change the box to
 //   // fire check array?
-//   var player1 = $('slot.red');
-//   var player2 = $('slot.yellow');
+//   var player1 = $('.red');
+//   var player2 = $('.yellow');
 //   var currentPlayer = player1;
 
 
@@ -212,6 +212,7 @@ var changeTurn = function(){
               board[parseInt(y)][parseInt(x)] = 1;
               checkForWinner();
               turn = false;
+    });
     } else{
        $('.slot').click(function(event) {
         $(this).off().addClass('yellow');
@@ -221,7 +222,8 @@ var changeTurn = function(){
         checkForWinner();
         // console.table(board);
         turn = true;
-    }))
+       }) ;
+    }
   };
 
 

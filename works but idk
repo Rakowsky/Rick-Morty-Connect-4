@@ -1,3 +1,6 @@
+works but idk
+
+
 $(document).ready(function(){
 // create lenght of rows and columns
 
@@ -5,42 +8,7 @@ var row = 6;
 var column = 7;
 var index = 0;
 var board = [];
-var turn = true;
-// turn = true => P1
-// turn = false => P2
 
-
- function changePlayer() {
-    // invert the player boolean
-    turn = !turn;
-    console.log(turn);
-  }
-
-// @teikmeout
-function handleClick(event) {
-  console.log('handleClick');
-  console.log(event.target);
-  // what player is in turn
-  // what color do I change the box to
-  // fire check array?
-
-
-  if(turn){
-    event.target.classList.add('red');
-      var x = event.target.classList[1][event.target.classList[1].length-1];
-      var y = event.target.classList[2][event.target.classList[2].length-1];
-      board[parseInt(y)][parseInt(x)] = 1;
-      checkForWinner();
-      changePlayer();
-    } else{
-      event.target.classList.add('yellow');
-      var a = event.target.classList[1][event.target.classList[1].length-1];
-      var b = event.target.classList[2][event.target.classList[2].length-1];
-      board[parseInt(b)][parseInt(a)] = 2;
-      checkForWinner();
-      changePlayer();
-    }
-}
 
 // create board for 6x7 connect 4
 function createBoard(){
@@ -48,7 +16,7 @@ function createBoard(){
     board[i] = [];
       for(var j = 0; j < column; j++) {
             var $slot = $('<div>');
-            $slot.click(handleClick);
+            $slot.value = null;
             // adding individual class names to each slot
             $slot.addClass('slot');
             $slot.addClass('column-' + j);
@@ -65,7 +33,7 @@ createBoard();
 console.table(board);
 console.log(board);
 
-
+var turn = true;
 
 /*var changeTurn = function(){
   if(turn = true){
@@ -76,41 +44,36 @@ console.log(board);
   }
 };*/
 
-// var changeTurn = function(){
-//     if(turn === true){
-//       $('.slot').click(function(event) {
-//             $(this).off().addClass('red');
-//               var x = event.target.classList[1][event.target.classList[1].length-1];
-//               var y = event.target.classList[2][event.target.classList[2].length-1];
-//               board[parseInt(y)][parseInt(x)] = 1;
-//               checkForWinner();
-//               turn = false;
-//     });
-//     } else{
-//        $('.slot').click(function(event) {
-//         $(this).off().addClass('yellow');
-//         var x = event.target.classList[1][event.target.classList[1].length-1];
-//         var y = event.target.classList[2][event.target.classList[2].length-1];
-//         board[parseInt(y)][parseInt(x)] = 2;
-//         checkForWinner();
-//         // console.table(board);
-//         turn = true;
-//        }) ;
-//     }
-//   };
+var changeTurn = function(){
+    if(turn === true){
+      $('.slot').click(function(event) {
+            $(this).off().addClass('red');
+              var x = event.target.classList[1][event.target.classList[1].length-1];
+              var y = event.target.classList[2][event.target.classList[2].length-1];
+              board[parseInt(y)][parseInt(x)] = 1;
+              checkForWinner();
+              turn = !(true);
 
-
-
-
+  });
+    } else{
+       $('.slot').click(function(event) {
+        $(this).off().addClass('yellow');
+        var x = event.target.classList[1][event.target.classList[1].length-1];
+        var y = event.target.classList[2][event.target.classList[2].length-1];
+        board[parseInt(y)][parseInt(x)] = 2;
+        checkForWinner();
+        // console.table(board);
+        turn = true;
+    })
+  }
+}
+changeTurn();
 
 var checkForWinner = function(){
   // check for both winners
 
-  // for(var r = 0; r < 5; r++) {
-  //   for (var c = 0; c < 7; c++) {
-      for(var r = 0; r < 3; r++){
-        for(var c = 0; c < 7; c++){
-
+  for(var r = 0; r < 6; r++) {
+    for (var c = 0; c < 7; c++) {
     // loop through vertically
       if(
         // (board[r][c] !== 0) &&
@@ -132,11 +95,7 @@ var checkForWinner = function(){
         ){
           alert('yellow win ver');
         }
-      }};
         // loop through horizontally
-
-        for (var r = 0; r < 6; r++){
-        for (var c = 0; c < 4; c++){
         if(
 
         // (board[r][c] !== 0) &&
@@ -159,11 +118,8 @@ var checkForWinner = function(){
         ){
           alert('yellow win hor');
         }
-        }};
-        // check diagonally down
 
-        for (var r = 0; r < 3; r++){
-        for (var c = 0; c < 4; c++){
+        // check diagonally down
          if(
 
           // (board[r][c] !== 0) &&
@@ -186,10 +142,7 @@ var checkForWinner = function(){
            ) {
            alert('yellow win dia down');
         }
-      }};
         // check diagonally up
-        for (var r = 3; r < 6; r++){
-        for (var c = 0; c < 4; c++){
          if(
 
           // (board[r][c] !== 0) &&
@@ -211,13 +164,13 @@ var checkForWinner = function(){
 
            ) {
            alert('yellow win dia up');
-        }}};
+        }
         // debugger;
         // else {
         //   return false;
         // }
-
-
+    }
+  }
 };
 
 /*checkForWinner();
@@ -317,3 +270,7 @@ var $player2 = $(function() {
 
 
 });
+
+
+
+
