@@ -3,24 +3,40 @@
     width: 100%;
     display: flex;
     justify-content: space-around;
-    border: 2px solid red;
+    /*border: 2px solid red;*/
     flex-wrap: wrap;
 }
 
+
+body{
+  background-color: white;
+}
+
+.header{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 50px;
+    color: #995555;
+}
 .body {
     height: 70vh;
     width: 100%;
     display: flex;
     justify-content: space-around;
-    border: 2px solid blue;
+    /*border: 2px solid blue;*/
     padding-top: 5%;
     flex-wrap: wrap;
+
 }
 
 .player1 {
-    width: 10%;
+    width: 15%;
     height: 40%;
-    border: 2px solid black;
+    /*border: 2px solid black;*/
+    border-radius: 5px;
+    background-color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 30px;
+    color: #c56d6d;
 }
 
 .gameboard {
@@ -33,7 +49,7 @@
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
-    background-color: skyblue;
+    background-color: #DB7A7A;
 }
 
 .slotRow {
@@ -50,38 +66,43 @@
     flex-direction: row;
     align-items: center;
     border-radius: 50%;
-    background-color: pink;
+    background-color: white;
     padding: 2%;
     width: 10%;
     height: 10%;
 }
 
 .red {
-    background-color: red;
+    background-color: #f7e4e4;
 }
 
 .yellow {
-    background-color: yellow;
+    background-color: #7ADBDB;
 }
 
 .player2 {
-    width: 10%;
+    width: 15%;
     height: 40%;
-    border: 2px solid black;
+    /*border: 2px solid black;*/
+    border-radius: 5px;
+    background-color: white;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 30px;
+    color: #c56d6d;
 }
 
 .footer {
     height: 20%;
     width: 100%;
     display: flex;
-    border: 2px solid yellow;
+    /*border: 2px solid yellow;*/
     justify-content: center;
 }
 
 .newgame {
     width: 10%;
     height: 30%;
-    border: 2px solid pink;
+    /*border: 2px solid pink;*/
     display: flex;
     justify-content: center;
     align-items: center;
