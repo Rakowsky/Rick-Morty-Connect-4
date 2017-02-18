@@ -30,7 +30,7 @@ createBoard();
 console.table(board);
 console.log(board);
 
-var turn = true;
+
 
 /*var changeTurn = function(){
   if(turn = true){
@@ -41,29 +41,58 @@ var turn = true;
   }
 };*/
 
-var changeTurn = function(){
+function changeTurn(){
     if(turn === true){
-      $('.slot').click(function(event) {
+  //     $('.slot').click(function(event) {
+  //           $(this).off().addClass('red');
+  //             var x = event.target.classList[1][event.target.classList[1].length-1];
+  //             var y = event.target.classList[2][event.target.classList[2].length-1];
+  //             board[parseInt(y)][parseInt(x)] = 1;
+  //             checkForWinner();
+  //             turn = false;
+                player1();
+                turn = false;
+
+  // });
+    } else{
+       // $('.slot').click(function(event) {
+       //  $(this).off().addClass('yellow');
+       //  var x = event.target.classList[1][event.target.classList[1].length-1];
+       //  var y = event.target.classList[2][event.target.classList[2].length-1];
+       //  board[parseInt(y)][parseInt(x)] = 2;
+       //  checkForWinner();
+        // console.table(board);
+        player2();
+        turn = true;
+    }
+}
+
+// changeTurn();
+
+
+function player1(){
+  $('.slot').click(function(event) {
             $(this).off().addClass('red');
               var x = event.target.classList[1][event.target.classList[1].length-1];
               var y = event.target.classList[2][event.target.classList[2].length-1];
               board[parseInt(y)][parseInt(x)] = 1;
               checkForWinner();
-              return turn = false;
+              changeTurn();
+});
+}
 
-  });
-    } else{
-      } $('.slot').click(function(event) {
+function player2(){
+     $('.slot').click(function(event) {
         $(this).off().addClass('yellow');
         var x = event.target.classList[1][event.target.classList[1].length-1];
         var y = event.target.classList[2][event.target.classList[2].length-1];
         board[parseInt(y)][parseInt(x)] = 2;
         checkForWinner();
-        // console.table(board);
-        return turn = true;
-    })
+        changeTurn();
+});
 }
-changeTurn();
+
+var turn = true;
 
 var checkForWinner = function(){
   // check for both winners
