@@ -10,22 +10,22 @@ var turn = true;
 // turn = false => P2
 
 // have player names show up on page. taken from here http://stackoverflow.com/questions/4656843/jquery-get-querystring-from-url
-function getUrlVars()
+function getUrlNames()
 {
-    var vars = [], hash;
+    var names = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
     for(var i = 0; i < hashes.length; i++)
     {
         hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
+        names.push(hash[0]);
+        names[hash[0]] = hash[1];
     }
-    return vars;
+    return names;
 }
 
 
-var player1 = getUrlVars()["player1"];
-var player2 = getUrlVars()["player2"];
+var player1 = getUrlNames()["player1"];
+var player2 = getUrlNames()["player2"];
 
 $('.player1').append(player1);
 $('.player2').append(player2);
