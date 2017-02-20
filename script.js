@@ -111,31 +111,40 @@ console.log(board);
   }
 };*/
 
-// var changeTurn = function(){
-//     if(turn === true){
-//       $('.slot').click(function(event) {
-//             $(this).off().addClass('red');
-//               var x = event.target.classList[1][event.target.classList[1].length-1];
-//               var y = event.target.classList[2][event.target.classList[2].length-1];
-//               board[parseInt(y)][parseInt(x)] = 1;
-//               checkForWinner();
-//               turn = false;
-//     });
-//     } else{
-//        $('.slot').click(function(event) {
-//         $(this).off().addClass('yellow');
-//         var x = event.target.classList[1][event.target.classList[1].length-1];
-//         var y = event.target.classList[2][event.target.classList[2].length-1];
-//         board[parseInt(y)][parseInt(x)] = 2;
-//         checkForWinner();
-//         // console.table(board);
-//         turn = true;
-//        }) ;
-//     }
-//   };
+/*var changeTurn = function(){
+    if(turn === true){
+      $('.slot').click(function(event) {
+            $(this).off().addClass('red');
+              var x = event.target.classList[1][event.target.classList[1].length-1];
+              var y = event.target.classList[2][event.target.classList[2].length-1];
+              board[parseInt(y)][parseInt(x)] = 1;
+              checkForWinner();
+              turn = false;
+    });
+    } else{
+       $('.slot').click(function(event) {
+        $(this).off().addClass('yellow');
+        var x = event.target.classList[1][event.target.classList[1].length-1];
+        var y = event.target.classList[2][event.target.classList[2].length-1];
+        board[parseInt(y)][parseInt(x)] = 2;
+        checkForWinner();
+        // console.table(board);
+        turn = true;
+       }) ;
+    }
+  };
+*/
 
+// Win function to change gameboard to a gif
+function youWin(){
+    // var $winner = $('<div>');
+    // $winner.addClass('winner');
+    // $('.body').append($winner);
+    // $winner.text(' you win');
+    $('.gameboard').css('content','url(./winner.gif)');
+}
 
-
+// youWin();
 
 // check winner of the game
 var checkForWinner = function(){
@@ -156,6 +165,7 @@ var checkForWinner = function(){
 
         ){
           alert('Player 1 Wins!');
+          youWin();
         }
       if(
         // (board[r][c] !== 0) &&
@@ -166,6 +176,7 @@ var checkForWinner = function(){
 
         ){
           alert('Player 2 Wins!');
+          youWin();
         }
       // }};
       //   // loop through horizontally
@@ -182,6 +193,7 @@ var checkForWinner = function(){
 
         ){
           alert('Player 1 Wins!');
+          youWin();
         }
         if(
 
@@ -193,6 +205,7 @@ var checkForWinner = function(){
 
         ){
           alert('Player 2 Wins!');
+          youWin();
         }
         // }};
         // // check diagonally down
@@ -209,6 +222,7 @@ var checkForWinner = function(){
 
            ) {
            alert('Player 1 Wins!');
+            youWin();
         }
          if(
 
@@ -220,6 +234,7 @@ var checkForWinner = function(){
 
            ) {
            alert('Player 2 Wins!');
+          youWin();
         }
       // }};
       //   // check diagonally up
@@ -235,6 +250,7 @@ var checkForWinner = function(){
 
            ) {
            alert('Player 1 Wins!');
+          youWin();
         }
         if(
 
@@ -246,6 +262,7 @@ var checkForWinner = function(){
 
            ) {
            alert('Player 2 Wins!');
+          youWin();
         }
       // }};
         // debugger;
@@ -256,9 +273,7 @@ var checkForWinner = function(){
     } }
     };
 
-function youWin(){
 
-}
 
 
 
