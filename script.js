@@ -30,7 +30,8 @@ var player2 = getUrlVars()["player2"];
 $('.player1').append(player1);
 $('.player2').append(player2);
 
-// defining each column
+/*
+// defining each column for when pieces are dropped
 this.column0 = ['.slot.column-0.row-0', '.slot.column-0.row-1', '.slot.column-0.row-2', '.slot.column-0.row-3', '.slot.column-0.row-4', '.slot.column-0.row-5'];
 this.column1 = ['.slot.column-1.row-0', '.slot.column-1.row-1', '.slot.column-1.row-2', '.slot.column-1.row-3', '.slot.column-1.row-4', '.slot.column-1.row-5'];
 this.column2 = ['.slot.column-2.row-0', '.slot.column-2.row-1', '.slot.column-2.row-2', '.slot.column-2.row-3', '.slot.column-2.row-4', '.slot.column-2.row-5'];
@@ -38,6 +39,7 @@ this.column3 = ['.slot.column-3.row-0', '.slot.column-3.row-1', '.slot.column-3.
 this.column4 = ['.slot.column-4.row-0', '.slot.column-4.row-1', '.slot.column-4.row-2', '.slot.column-4.row-3', '.slot.column-4.row-4', '.slot.column-4.row-5'];
 this.column5 = ['.slot.column-5.row-0', '.slot.column-5.row-1', '.slot.column-5.row-2', '.slot.column-5.row-3', '.slot.column-5.row-4', '.slot.column-5.row-5'];
 this.column6 = ['.slot.column-6.row-0', '.slot.column-6.row-1', '.slot.column-6.row-2', '.slot.column-6.row-3', '.slot.column-6.row-4', '.slot.column-6.row-5'];
+*/
 
  function changePlayer() {
     // invert the player boolean
@@ -139,7 +141,7 @@ console.log(board);
 var checkForWinner = function(){
   // check for both winners
 
-  for(var r = 0; r < 4; r++) {
+  for(var r = 0; r < 3; r++) {
     for (var c = 0; c < 7 ; c++) {
       // for(var r = 0; r < 3; r++){
       //   for(var c = 0; c < 7; c++){
@@ -253,6 +255,12 @@ var checkForWinner = function(){
 
     } }
     };
+
+function youWin(){
+
+}
+
+
 
 /*checkForWinner();
 
