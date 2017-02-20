@@ -41,6 +41,8 @@ this.column5 = ['.slot.column-5.row-0', '.slot.column-5.row-1', '.slot.column-5.
 this.column6 = ['.slot.column-6.row-0', '.slot.column-6.row-1', '.slot.column-6.row-2', '.slot.column-6.row-3', '.slot.column-6.row-4', '.slot.column-6.row-5'];
 */
 
+
+// changes player turns
  function changePlayer() {
     // invert the player boolean
     turn = !turn;
@@ -48,6 +50,7 @@ this.column6 = ['.slot.column-6.row-0', '.slot.column-6.row-1', '.slot.column-6.
   }
 
 // @teikmeout
+// triggers slot being clicked when it is each players turn
 function handleClick(event) {
   console.log('handleClick');
   console.log(event.target);
