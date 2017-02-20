@@ -9,6 +9,35 @@ var turn = true;
 // turn = true => P1
 // turn = false => P2
 
+// have player names show up on page. taken from here http://stackoverflow.com/questions/4656843/jquery-get-querystring-from-url
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
+
+var player1 = getUrlVars()["player1"];
+var player2 = getUrlVars()["player2"];
+
+$('.player1').append(player1);
+$('.player2').append(player2);
+
+// defining each column
+this.column0 = ['.slot.column-0.row-0', '.slot.column-0.row-1', '.slot.column-0.row-2', '.slot.column-0.row-3', '.slot.column-0.row-4', '.slot.column-0.row-5'];
+this.column1 = ['.slot.column-1.row-0', '.slot.column-1.row-1', '.slot.column-1.row-2', '.slot.column-1.row-3', '.slot.column-1.row-4', '.slot.column-1.row-5'];
+this.column2 = ['.slot.column-2.row-0', '.slot.column-2.row-1', '.slot.column-2.row-2', '.slot.column-2.row-3', '.slot.column-2.row-4', '.slot.column-2.row-5'];
+this.column3 = ['.slot.column-3.row-0', '.slot.column-3.row-1', '.slot.column-3.row-2', '.slot.column-3.row-3', '.slot.column-3.row-4', '.slot.column-3.row-5'];
+this.column4 = ['.slot.column-4.row-0', '.slot.column-4.row-1', '.slot.column-4.row-2', '.slot.column-4.row-3', '.slot.column-4.row-4', '.slot.column-4.row-5'];
+this.column5 = ['.slot.column-5.row-0', '.slot.column-5.row-1', '.slot.column-5.row-2', '.slot.column-5.row-3', '.slot.column-5.row-4', '.slot.column-5.row-5'];
+this.column6 = ['.slot.column-6.row-0', '.slot.column-6.row-1', '.slot.column-6.row-2', '.slot.column-6.row-3', '.slot.column-6.row-4', '.slot.column-6.row-5'];
 
  function changePlayer() {
     // invert the player boolean
@@ -26,7 +55,8 @@ function handleClick(event) {
 
 
   if(turn){
-    event.target.classList.add('red');
+      // var target = board[board.length][board[0].length];
+      event.target.classList.add('red');
       var x = event.target.classList[1][event.target.classList[1].length-1];
       var y = event.target.classList[2][event.target.classList[2].length-1];
       board[parseInt(y)][parseInt(x)] = 1;
@@ -34,12 +64,14 @@ function handleClick(event) {
       changePlayer();
     } else{
       event.target.classList.add('yellow');
+     // event.board[board.length-1][board[0].length-1].classList.add('yellow');
       var a = event.target.classList[1][event.target.classList[1].length-1];
       var b = event.target.classList[2][event.target.classList[2].length-1];
       board[parseInt(b)][parseInt(a)] = 2;
       checkForWinner();
       changePlayer();
     }
+      console.log(event.target);
 }
 
 // create board for 6x7 connect 4
@@ -48,6 +80,7 @@ function createBoard(){
     board[i] = [];
       for(var j = 0; j < column; j++) {
             var $slot = $('<div>');
+            // add a handle click function to toggle between player turns
             $slot.click(handleClick);
             // adding individual class names to each slot
             $slot.addClass('slot');
@@ -102,14 +135,14 @@ console.log(board);
 
 
 
-
+// check winner of the game
 var checkForWinner = function(){
   // check for both winners
 
-  // for(var r = 0; r < 5; r++) {
-  //   for (var c = 0; c < 7; c++) {
-      for(var r = 0; r < 3; r++){
-        for(var c = 0; c < 7; c++){
+  for(var r = 0; r < 4; r++) {
+    for (var c = 0; c < 7 ; c++) {
+      // for(var r = 0; r < 3; r++){
+      //   for(var c = 0; c < 7; c++){
 
     // loop through vertically
       if(
@@ -120,7 +153,7 @@ var checkForWinner = function(){
         (board[r + 3][c] === 1)
 
         ){
-          alert('red win ver');
+          alert('Player 1 Wins!');
         }
       if(
         // (board[r][c] !== 0) &&
@@ -130,13 +163,13 @@ var checkForWinner = function(){
         (board[r + 3][c] === 2)
 
         ){
-          alert('yellow win ver');
+          alert('Player 2 Wins!');
         }
-      }};
-        // loop through horizontally
+      // }};
+      //   // loop through horizontally
 
-        for (var r = 0; r < 6; r++){
-        for (var c = 0; c < 4; c++){
+      //   for (var r = 0; r < 6; r++){
+      //   for (var c = 0; c < 4; c++){
         if(
 
         // (board[r][c] !== 0) &&
@@ -146,7 +179,7 @@ var checkForWinner = function(){
         (board[r][c+3] === 1)
 
         ){
-          alert('red win hor');
+          alert('Player 1 Wins!');
         }
         if(
 
@@ -157,13 +190,13 @@ var checkForWinner = function(){
         (board[r][c+3] === 2)
 
         ){
-          alert('yellow win hor');
+          alert('Player 2 Wins!');
         }
-        }};
-        // check diagonally down
+        // }};
+        // // check diagonally down
 
-        for (var r = 0; r < 3; r++){
-        for (var c = 0; c < 4; c++){
+        // for (var r = 0; r < 3; r++){
+        // for (var c = 0; c < 4; c++){
          if(
 
           // (board[r][c] !== 0) &&
@@ -173,7 +206,7 @@ var checkForWinner = function(){
           (board[r + 3][c + 3] === 1)
 
            ) {
-           alert('red win dia down');
+           alert('Player 1 Wins!');
         }
          if(
 
@@ -184,12 +217,12 @@ var checkForWinner = function(){
           (board[r + 3][c + 3] === 2)
 
            ) {
-           alert('yellow win dia down');
+           alert('Player 2 Wins!');
         }
-      }};
-        // check diagonally up
-        for (var r = 3; r < 6; r++){
-        for (var c = 0; c < 4; c++){
+      // }};
+      //   // check diagonally up
+      //   for (var r = 3; r < 6; r++){
+      //   for (var c = 0; c < 4; c++){
          if(
 
           // (board[r][c] !== 0) &&
@@ -199,7 +232,7 @@ var checkForWinner = function(){
           (board[r + 3][c - 3] === 1)
 
            ) {
-           alert('red win dia up');
+           alert('Player 1 Wins!');
         }
         if(
 
@@ -210,15 +243,16 @@ var checkForWinner = function(){
           (board[r + 3][c - 3] === 2)
 
            ) {
-           alert('yellow win dia up');
-        }}};
+           alert('Player 2 Wins!');
+        }
+      // }};
         // debugger;
         // else {
         //   return false;
         // }
 
-
-};
+    } }
+    };
 
 /*checkForWinner();
 
