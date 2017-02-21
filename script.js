@@ -9,7 +9,7 @@ var turn = true;
 // turn = true => P1
 // turn = false => P2
 
-// have player names show up on page. taken from here http://stackoverflow.com/questions/4656843/jquery-get-querystring-from-url
+// have player names show up on page. referenced from here http://stackoverflow.com/questions/4656843/jquery-get-querystring-from-url
 function getUrlNames()
 {
     var names = [], hash;
