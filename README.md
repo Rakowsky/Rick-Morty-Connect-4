@@ -52,6 +52,10 @@ Very excited by the game. Could fix some bugs and tweak the code, but overall it
 
 ###### Wireframes:
 
+![alt tag](./screenshots/Screen Shot 2017-02-20 at 4.02.55 PM)
+![alt tag](./screenshots/Screen Shot 2017-02-20 at 5.48.31 PM)
+![alt tag](./screenshots/Screen Shot 2017-02-20 at 4.02.38 PM)
+![alt tag](./screenshots/Screen Shot 2017-02-20 at 5.24.45 PM)
 
 
 
