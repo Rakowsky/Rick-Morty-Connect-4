@@ -167,7 +167,7 @@ var checkForWinner = function(){
         (board[r + 3][c] === 1)
 
         ){
-          alert('Player 1 Wins!');
+          alert('' + player1 +' Wins!');
           youWin();
         }
       if(
@@ -178,7 +178,7 @@ var checkForWinner = function(){
         (board[r + 3][c] === 2)
 
         ){
-          alert('Player 2 Wins!');
+          alert('' + player2 +' Wins!');
           youWin();
         }
       // }};
@@ -195,7 +195,7 @@ var checkForWinner = function(){
         (board[r][c+3] === 1)
 
         ){
-          alert('Player 1 Wins!');
+          alert('' + player1 +' Wins!');
           youWin();
         }
         if(
@@ -207,7 +207,7 @@ var checkForWinner = function(){
         (board[r][c+3] === 2)
 
         ){
-          alert('Player 2 Wins!');
+          alert('' + player2 +' Wins!');
           youWin();
         }
         // }};
@@ -224,7 +224,7 @@ var checkForWinner = function(){
           (board[r + 3][c + 3] === 1)
 
            ) {
-           alert('Player 1 Wins!');
+           alert('' + player1 +' Wins!');
             youWin();
         }
          if(
@@ -236,7 +236,7 @@ var checkForWinner = function(){
           (board[r + 3][c + 3] === 2)
 
            ) {
-           alert('Player 2 Wins!');
+           alert('' + player2 +' Wins!');
           youWin();
         }
       // }};
@@ -252,7 +252,7 @@ var checkForWinner = function(){
           (board[r + 3][c - 3] === 1)
 
            ) {
-           alert('Player 1 Wins!');
+           alert('' + player1 +' Wins!');
           youWin();
         }
         if(
@@ -264,7 +264,7 @@ var checkForWinner = function(){
           (board[r + 3][c - 3] === 2)
 
            ) {
-           alert('Player 2 Wins!');
+           alert('' + player2 +' Wins!');
           youWin();
         }
       // }};
