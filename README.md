@@ -50,12 +50,7 @@ Connect 4, a 2 player game where the first person to connect 4 chips in a row ve
 
 Very excited by the game. Could fix some bugs and tweak the code, but overall it was a fun, challenging project. 
 
-###### Wireframes:
 
-![img](./screenshots/Screen Shot 2017-02-20 at 4.02.55 PM)
-![img](./screenshots/Screen Shot 2017-02-20 at 5.48.31 PM)
-![img](./screenshots/Screen Shot 2017-02-20 at 4.02.38 PM)
-![img](./screenshots/Screen Shot 2017-02-20 at 5.24.45 PM)
 
 
 
