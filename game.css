@@ -49,6 +49,7 @@ body{
     height: 80%;
     padding: 1%;
     border: 2px solid black;
+    border-radius: 10px;
     overflow: hidden;
     display: flex;
     flex-direction: row;
