@@ -1,11 +1,11 @@
-var Cell = function() {
+var slot = function() {
   //value placeholder that will take player value.
   this.value = null;
 }
 
 //Board constructors
 var Board = function() {
-  this.cellsArray = [];
+  this.slotsArray = [];
   this.currentPlayer = null;
   this.image = null;
   this.winner = null;
@@ -14,60 +14,60 @@ var Board = function() {
 
 //Start Game prototype
 Board.prototype.startGame = function() {
-  var $currentPlayerMarker1 = $('<div class = "Rick">').html("Rick");
-  var $currentPlayerMarker2 = $('<div class = "Morty">').html('Morty');
-  $('.player1').append($currentPlayerMarker1);
-  this.cellsArray = [];
+  var $player1Marker = $('<div>').html("Rick");
+  var $player2Marker = $('<div>').html('Morty');
+  $('.player1').append($player1Marker);
+  this.slotsArray = [];
   this.currentPlayer = "Rick";
-  this.image = $("<img class='Rick' src='rick.png'/>");
-  this.currentPlayerMarker1 = $currentPlayerMarker1;
-  this.currentPlayerMarker2 = $currentPlayerMarker2;
+  this.image = $("<img class='Rick' src='rick2.png'/>");
+  this.player1Marker = $player1Marker;
+  this.player2Marker = $player2Marker;
 
   console.log('Current Player is Rick');
 
   //Gives a board of objects with acessible rows and columns
-  //Temp Array with all the cells
+  //Temp Array with all the slots
   var bigArray = [];
-  //Temporary Array to store Column Cells
+  //Temporary array to store Column slots
   var columnArray = [];
-  //Create big Array of cell objects
+  //Create bigArray of slot objects
   for (var i = 0; i < 42; i++) {
-    bigArray.push(new Cell());
+    bigArray.push(new slot());
   }
   console.log(bigArray);
-  //outer loop to repeat the below process 7 times, creating 7 column arrays.
+  //creating 7 columns
   for (var j = 0; j < 7; j++) {
-    //Inner loop to create an array of 6;
+    //creating 6 rows
     for (var i = 0; i < 6; i++) {
       //each time it pushes into the column Array, and then takes one from the big array
       columnArray.push(bigArray[0]);
       bigArray.shift();
     }
     //[pushes that column array into the final array for the board]
-    this.cellsArray.push(columnArray);
+    this.slotsArray.push(columnArray);
     //resets column array to be used for bigger outer loop.
     columnArray = [];
   }
-  console.log(this.cellsArray);
+  console.log(this.slotsArray);
 };
 
-//Switches Player
+//Player turns
 Board.prototype.switchPlayer = function() {
   switch (this.currentPlayer) {
     case 'Rick':
       this.currentPlayer = 'Morty';
-      this.image = $("<img class='Morty' src='morty.png'/>");
+      this.image = $("<img class='Morty' src='morty2.png'/>");
       break;
     case 'Morty':
       this.currentPlayer = 'Rick';
-      this.image = $("<img class='Rick' src='rick.png'/>");
+      this.image = $("<img class='Rick' src='rick2.png'/>");
       break;
   }
 };
 
 //Checks Win
 Board.prototype.checkWin = function(currentPlayer) {
-  var board = this.cellsArray
+  var board = this.slotsArray
 
   //Check horizontal
   for (var r = 0; r < 4; r++) {
@@ -118,15 +118,19 @@ Board.prototype.checkWin = function(currentPlayer) {
   }
 };
 
-
 //Clears body and displays win message and image.
 Board.prototype.displayWinner = function(currentPlayer) {
   $('body').empty().append("<div class = 'winner-message'>");
-  $('div').text(currentPlayer + " has won! Wubalubadubdub!")
-  $('body').append('<img src="giphy.gif">');
+  if(currentPlayer === 'Rick'){
+    $('div').text(currentPlayer + " has won! Wubalubadubdub!")
+    $('body').append('<img src="rick.gif">');
+  } else {
+    $('div').text(currentPlayer + " has won! Oh, geez.")
+    $('body').append('<img src="morty.gif">');
+  }
 }
 
-//Game Object Literal
+//Game Object
 var Game = {
   //Blank board
   board: null,
@@ -144,19 +148,18 @@ var Game = {
 
     //Click event on each Column
     $columns.click(function() {
-      //used to pass in current player to function.
       var currentPlayer = Game.board.currentPlayer;
       //used to change game piece
       var tokenImage = Game.board.image;
 
       if (currentPlayer === "Rick") {
-        Game.board.currentPlayerMarker1.remove();
-        $('.player2').append(Game.board.currentPlayerMarker2);
+        Game.board.player1Marker.remove();
+        $('.player2').append(Game.board.player2Marker);
       } else if (currentPlayer === 'Morty') {
-        Game.board.currentPlayerMarker2.remove();
-        $('.player1').append(Game.board.currentPlayerMarker1);
+        Game.board.player2Marker.remove();
+        $('.player1').append(Game.board.player1Marker);
       }
-      //If Column Zero is clicked
+      //If Column Zero is clicked, do it for each column
       if (this.id === 'column0') {
         //Check for the lowest free spot and add piece.
         console.log('Column 0' + ' has been clicked by ' + currentPlayer);
@@ -170,7 +173,7 @@ var Game = {
             image.velocity("transition.bounceDownIn")
 
             $('#0-' + j).append(image);
-            Game.board.cellsArray[0][j].value = currentPlayer;
+            Game.board.slotsArray[0][j].value = currentPlayer;
             Game.board.switchPlayer();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
@@ -191,7 +194,7 @@ var Game = {
             $('#1-' + j).text(currentPlayer);
             $('#1-' + j).append(tokenImage);
             tokenImage.velocity("transition.bounceDownIn");
-            Game.board.cellsArray[1][j].value = currentPlayer;
+            Game.board.slotsArray[1][j].value = currentPlayer;
             Game.board.switchPlayer();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
@@ -212,7 +215,7 @@ var Game = {
             $('#2-' + j).text(currentPlayer);
             $('#2-' + j).append(tokenImage);
             tokenImage.velocity("transition.bounceDownIn");
-            Game.board.cellsArray[2][j].value = currentPlayer;
+            Game.board.slotsArray[2][j].value = currentPlayer;
             Game.board.switchPlayer();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
@@ -233,7 +236,7 @@ var Game = {
             $('#3-' + j).text(currentPlayer)
             $('#3-' + j).append(tokenImage);
             tokenImage.velocity("transition.bounceDownIn");
-            Game.board.cellsArray[3][j].value = currentPlayer;
+            Game.board.slotsArray[3][j].value = currentPlayer;
             Game.board.switchPlayer();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
@@ -254,7 +257,7 @@ var Game = {
             $('#4-' + j).text(currentPlayer);
             $('#4-' + j).append(tokenImage);
             tokenImage.velocity("transition.bounceDownIn");
-            Game.board.cellsArray[4][j].value = currentPlayer;
+            Game.board.slotsArray[4][j].value = currentPlayer;
             Game.board.switchPlayer();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
@@ -275,7 +278,7 @@ var Game = {
             $('#5-' + j).text(currentPlayer);
             $('#5-' + j).append(tokenImage);
             tokenImage.velocity("transition.bounceDownIn");
-            Game.board.cellsArray[5][j].value = currentPlayer;
+            Game.board.slotsArray[5][j].value = currentPlayer;
             Game.board.switchPlayer();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
@@ -295,7 +298,7 @@ var Game = {
             $('#6-' + j).text(currentPlayer);
             $('#6-' + j).append(tokenImage);
             tokenImage.velocity("transition.bounceDownIn");
-            Game.board.cellsArray[6][j].value = currentPlayer;
+            Game.board.slotsArray[6][j].value = currentPlayer;
             Game.board.switchPlayer();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
