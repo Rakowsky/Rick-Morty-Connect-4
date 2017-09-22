@@ -25,34 +25,34 @@ Board.prototype.startGame = function() {
 
   console.log('Current Player is Rick');
 
-  //Gives a board of objects with acessible rows and columns
-  //Temp Array with all the slots
-  var bigArray = [];
-  //Temporary array to store Column slots
+  //Gives a board of objects with accessible rows and columns
+  //Array with all the slots
+  var boardArray = [];
+  //Array to store Column slots
   var columnArray = [];
-  //Create bigArray of slot objects
+  //Create boardArray of slot objects
   for (var i = 0; i < 42; i++) {
-    bigArray.push(new slot());
+    boardArray.push(new slot());
   }
-  console.log(bigArray);
+  // console.log(boardArray);
   //creating 7 columns
   for (var j = 0; j < 7; j++) {
     //creating 6 rows
     for (var i = 0; i < 6; i++) {
       //each time it pushes into the column Array, and then takes one from the big array
-      columnArray.push(bigArray[0]);
-      bigArray.shift();
+      columnArray.push(boardArray[0]);
+      boardArray.shift();
     }
     //[pushes that column array into the final array for the board]
     this.slotsArray.push(columnArray);
     //resets column array to be used for bigger outer loop.
     columnArray = [];
   }
-  console.log(this.slotsArray);
+  // console.log(this.slotsArray);
 };
 
 //Player turns
-Board.prototype.switchPlayer = function() {
+Board.prototype.changeTurn = function() {
   switch (this.currentPlayer) {
     case 'Rick':
       this.currentPlayer = 'Morty';
@@ -65,23 +65,11 @@ Board.prototype.switchPlayer = function() {
   }
 };
 
-//Checks Win
+//Checks win
 Board.prototype.checkWin = function(currentPlayer) {
   var board = this.slotsArray
 
-  //Check horizontal
-  for (var r = 0; r < 4; r++) {
-    for (var c = 0; c < 6; c++) {
-      if ((board[r][c].value === board[r + 1][c].value) && (board[r + 1][c].value === board[r + 2][c].value) && (board[r + 2][c].value === board[r + 3][c].value)) {
-        if (board[r][c].value !== null) {
-          this.winner = currentPlayer;
-          this.winnerFound = true;
-        }
-      }
-    }
-  };
-
-  // Check Vertical
+  // Check vertical
   for (var r = 0; r < 7; r++) {
     for (var c = 0; c < 3; c++) {
       if ((board[r][c].value === board[r][c + 1].value) && (board[r][c + 1].value === board[r][c + 2].value) && (board[r][c + 2].value === board[r][c + 3].value)) {
@@ -93,7 +81,30 @@ Board.prototype.checkWin = function(currentPlayer) {
     }
   };
 
-  //Check Diagonal Left to Right
+    //Check horizontal
+  for (var r = 0; r < 4; r++) {
+    for (var c = 0; c < 6; c++) {
+      if ((board[r][c].value === board[r + 1][c].value) && (board[r + 1][c].value === board[r + 2][c].value) && (board[r + 2][c].value === board[r + 3][c].value)) {
+        if (board[r][c].value !== null) {
+          this.winner = currentPlayer;
+          this.winnerFound = true;
+        }
+      }
+    }
+  };
+
+  //  Check diagonal right to left
+  for (var r = 3; r < 7; r++) {
+    for (var c = 0; c < 3; c++) {
+      if ((board[r][c].value === board[r - 1][c + 1].value) && (board[r - 1][c + 1].value === board[r - 2][c + 2].value) && (board[r - 2][c + 2].value === board[r - 3][c + 3].value)) {
+        if (board[r][c].value !== null) {
+          this.winner = currentPlayer;
+          this.winnerFound = true;
+        }
+      }
+    }
+  }
+    //Check diagonal left to right
   for (var r = 0; r < 4; r++) {
     for (var c = 0; c < 3; c++) {
       if ((board[r][c].value === board[r + 1][c + 1].value) && (board[r + 1][c + 1].value === board[r + 2][c + 2].value) && (board[r + 2][c + 2].value === board[r + 3][c + 3].value)) {
@@ -105,17 +116,6 @@ Board.prototype.checkWin = function(currentPlayer) {
     }
   };
 
-  //  Check Diagonal Right to Left
-  for (var r = 3; r < 7; r++) {
-    for (var c = 0; c < 3; c++) {
-      if ((board[r][c].value === board[r - 1][c + 1].value) && (board[r - 1][c + 1].value === board[r - 2][c + 2].value) && (board[r - 2][c + 2].value === board[r - 3][c + 3].value)) {
-        if (board[r][c].value !== null) {
-          this.winner = currentPlayer;
-          this.winnerFound = true;
-        }
-      }
-    }
-  }
 };
 
 //Clears body and displays win message and image.
@@ -136,22 +136,22 @@ var Game = {
   board: null,
   makeBoard: function() {
     this.board = new Board();
-    console.log('New board is made!');
+    console.log('The board is made!');
   },
   start: function() {
     this.board.startGame();
-    console.log('Game has started!');
+    console.log('The game has started!');
   },
   play: function() {
-    console.log('Play going!');
+    console.log('Play!');
     var $columns = $('.column');
 
-    //Click event on each Column
+    //Click event on each column
     $columns.click(function() {
       var currentPlayer = Game.board.currentPlayer;
       //used to change game piece
       var tokenImage = Game.board.image;
-
+      // switches player name on the board
       if (currentPlayer === "Rick") {
         Game.board.player1Marker.remove();
         $('.player2').append(Game.board.player2Marker);
@@ -159,10 +159,10 @@ var Game = {
         Game.board.player2Marker.remove();
         $('.player1').append(Game.board.player1Marker);
       }
-      //If Column Zero is clicked, do it for each column
+      //If Column 0 is clicked, do it for each column
       if (this.id === 'column0') {
         //Check for the lowest free spot and add piece.
-        console.log('Column 0' + ' has been clicked by ' + currentPlayer);
+        // console.log('Column 0' + ' has been clicked by ' + currentPlayer);
         for (var j = 0; j < 6; j++) {
           if ($('#0-' + j).text() === "") {
             var $this = $('#0-' + j);
@@ -174,7 +174,7 @@ var Game = {
 
             $('#0-' + j).append(image);
             Game.board.slotsArray[0][j].value = currentPlayer;
-            Game.board.switchPlayer();
+            Game.board.changeTurn();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
               Game.board.displayWinner(currentPlayer);
@@ -185,17 +185,17 @@ var Game = {
         alert('This column is full!')
       }
 
-      //If Column One is clicked
+      //If Column 1 is clicked
       else if (this.id === 'column1') {
         //Check for the lowest free spot and add piece.
-        console.log('Column 1' + ' has been clicked by ' + currentPlayer);
+        // console.log('Column 1' + ' has been clicked by ' + currentPlayer);
         for (var j = 0; j < 6; j++) {
           if ($('#1-' + j).text() === "") {
             $('#1-' + j).text(currentPlayer);
             $('#1-' + j).append(tokenImage);
             tokenImage.velocity("transition.bounceDownIn");
             Game.board.slotsArray[1][j].value = currentPlayer;
-            Game.board.switchPlayer();
+            Game.board.changeTurn();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
               Game.board.displayWinner(currentPlayer);
@@ -206,17 +206,17 @@ var Game = {
         alert('This column is full!')
       }
 
-      //If Column Two is clicked
+      //If Column 2 is clicked etc
       else if (this.id === 'column2') {
         //Check for the lowest free spot and add piece.
-        console.log('Column 2' + ' has been clicked by ' + currentPlayer);
+        // console.log('Column 2' + ' has been clicked by ' + currentPlayer);
         for (var j = 0; j < 6; j++) {
           if ($('#2-' + j).text() === "") {
             $('#2-' + j).text(currentPlayer);
             $('#2-' + j).append(tokenImage);
             tokenImage.velocity("transition.bounceDownIn");
             Game.board.slotsArray[2][j].value = currentPlayer;
-            Game.board.switchPlayer();
+            Game.board.changeTurn();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
               Game.board.displayWinner(currentPlayer);
@@ -227,17 +227,15 @@ var Game = {
         alert('This column is full!');
       }
 
-      //If Column Three is clicked
       else if (this.id === 'column3') {
-        //Check for the lowest free spot and add piece.
-        console.log('Column 3' + ' has been clicked by ' + currentPlayer);
+        // console.log('Column 3' + ' has been clicked by ' + currentPlayer);
         for (var j = 0; j < 6; j++) {
           if ($('#3-' + j).text() === "") {
             $('#3-' + j).text(currentPlayer)
             $('#3-' + j).append(tokenImage);
             tokenImage.velocity("transition.bounceDownIn");
             Game.board.slotsArray[3][j].value = currentPlayer;
-            Game.board.switchPlayer();
+            Game.board.changeTurn();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
               Game.board.displayWinner(currentPlayer);
@@ -248,17 +246,15 @@ var Game = {
         alert('This column is full!')
       }
 
-      //If Column Four is clicked
       else if (this.id === 'column4') {
-        //Check for the lowest free spot and add piece.
-        console.log('Column 4' + ' has been clicked by ' + currentPlayer);
+        // console.log('Column 4' + ' has been clicked by ' + currentPlayer);
         for (var j = 0; j < 6; j++) {
           if ($('#4-' + j).text() === "") {
             $('#4-' + j).text(currentPlayer);
             $('#4-' + j).append(tokenImage);
             tokenImage.velocity("transition.bounceDownIn");
             Game.board.slotsArray[4][j].value = currentPlayer;
-            Game.board.switchPlayer();
+            Game.board.changeTurn();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
               Game.board.displayWinner(currentPlayer);
@@ -269,17 +265,15 @@ var Game = {
         alert('This column is full!')
       }
 
-      //If Column Five is clicked
       else if (this.id === 'column5') {
-        //Check for the lowest free spot and add piece.
-        console.log('Column 5' + ' has been clicked by ' + currentPlayer);
+        // console.log('Column 5' + ' has been clicked by ' + currentPlayer);
         for (var j = 0; j < 6; j++) {
           if ($('#5-' + j).text() === "") {
             $('#5-' + j).text(currentPlayer);
             $('#5-' + j).append(tokenImage);
             tokenImage.velocity("transition.bounceDownIn");
             Game.board.slotsArray[5][j].value = currentPlayer;
-            Game.board.switchPlayer();
+            Game.board.changeTurn();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
               Game.board.displayWinner(currentPlayer);
@@ -289,17 +283,16 @@ var Game = {
         }
         alert('This column is full!')
       }
-      //If Column Six is clicked
+
       else if (this.id === 'column6') {
-        //Check for the lowest free spot and add piece.
-        console.log('Column 6' + ' has been clicked by ' + currentPlayer);
+        // console.log('Column 6' + ' has been clicked by ' + currentPlayer);
         for (var j = 0; j < 6; j++) {
           if ($('#6-' + j).text() === "") {
             $('#6-' + j).text(currentPlayer);
             $('#6-' + j).append(tokenImage);
             tokenImage.velocity("transition.bounceDownIn");
             Game.board.slotsArray[6][j].value = currentPlayer;
-            Game.board.switchPlayer();
+            Game.board.changeTurn();
             Game.board.checkWin(currentPlayer);
             if (Game.board.winnerFound === true) {
               Game.board.displayWinner(currentPlayer);
