@@ -12,6 +12,7 @@ Connect 4, a 2 player game where the first person to connect 4 chips in a row ve
 - CSS
 - Javascript
 - JQuery
+- VelocityUI
 
 
 
